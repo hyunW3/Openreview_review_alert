@@ -1,0 +1,30 @@
+{
+  "manifest_version": 3,
+  "name": "OpenReview Score Check",
+  "version": "1.1.0",
+  "description": "Monitors OpenReview reviews and can send changed reviews to a new ChatGPT chat.",
+  "icons": {
+    "128": "icon.png"
+  },
+  "permissions": ["activeTab", "scripting", "storage", "alarms", "notifications"],
+  "host_permissions": [
+    "https://openreview.net/*",
+    "https://api2.openreview.net/*",
+    "https://chatgpt.com/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["https://chatgpt.com/*"],
+      "js": ["chatgpt-bridge.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_title": "OpenReview Score Check",
+    "default_icon": "icon.png",
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "service_worker": "service-worker.js"
+  }
+}

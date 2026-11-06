@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>OpenReview 점수 확인</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header>
+    <div>
+      <h1>OpenReview</h1>
+      <p id="venue">저자 페이지를 확인하는 중…</p>
+    </div>
+    <button id="refresh" type="button" aria-label="다시 확인">↻</button>
+  </header>
+  <main>
+    <p id="status" role="status">감시 설정을 확인하는 중…</p>
+    <button id="connect" class="connect" type="button">현재 Authors 페이지 논문 감시 시작</button>
+    <p id="checked" class="checked"></p>
+    <section class="prompt-settings">
+      <label for="ai-prompt">ChatGPT 분석 지침</label>
+      <textarea id="ai-prompt" rows="5" placeholder="예: 리뷰별 핵심 우려, 리뷰 간 공통점, rebuttal에서 답할 항목을 한국어로 정리해줘."></textarea>
+      <label class="consent"><input id="ai-consent" type="checkbox"> 리뷰 내용이 바뀌면 ChatGPT 웹 채팅에 자동으로 전송</label>
+      <button id="save-prompt" type="button">지침 저장</button>
+      <button id="analyze-now" type="button">저장된 리뷰를 지금 ChatGPT에 보내기</button>
+      <p class="hint">일반 채팅에 보내는 사용자 메시지의 첫 부분에 지침을 붙입니다. OpenAI API의 system 역할 메시지는 아닙니다.</p>
+    </section>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Venue</th><th>논문 제목</th><th>점수</th><th>Confidence</th></tr>
+        </thead>
+        <tbody id="papers"></tbody>
+      </table>
+    </div>
+    <p class="hint">OpenReview에 로그인한 상태에서 Authors 페이지를 열고 확장 아이콘을 누르세요.</p>
+  </main>
+  <script src="popup.js"></script>
+</body>
+</html>
